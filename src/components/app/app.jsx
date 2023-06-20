@@ -11,9 +11,9 @@ function App() {
 		<div>
 			<Layout>
 				<Routes>
-					<Route path="/" element={<PrivateRoute component={Home} />} />
+					<Route path="/" element={<PublicRoute component={Home} />} />
 					<Route path='/login' element={<PublicRoute restricted={true} component={Login} />} />
-					<Route path='/register' element={<PublicRoute restricted={true} component={Register} />} />
+					<Route path='/register' element={<PrivateRoute restricted={true} component={Register} />} />
 				</Routes>
 			</Layout>
 		</div>

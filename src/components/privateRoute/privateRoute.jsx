@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { Navbar } from '../navbar';
+import { Navbars } from '../navbar';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
 	const { user } = useSelector((state) => state.auth);
 
 	return (
 		<>
-			<Navbar />
+			<Navbars />
 			{
 				!user
 					? <Navigate to={{ pathname: '/login', state: { from: props.location } }} replace />

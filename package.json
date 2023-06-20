@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "^7.14.6",
+    "@material-tailwind/react": "^2.0.4",
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -32,12 +33,6 @@
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx && npx stylelint '**/*.scss' '**/*.css'",
     "fix-lint": "eslint . --ext .js,.jsx --fix && npx stylelint '**/*.scss' '**/*.css' --fix"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
