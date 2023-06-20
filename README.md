@@ -37,11 +37,3 @@ If you are looking for more simplified version with folder structure and without
  - I know `Localstorage` is not safe to store tokens so template already has a
    support to deal with `Rotating-refresh-tokens`. You can read about the concept here: [Rotating Refresh Tokens](https://auth0.com/docs/secure/tokens/refresh-tokens/refresh-token-rotation).
  - Make sure you have set the expiry for `Access-tokens` less then 30s for better security.
- 
-#### To use the template `(Make sure to use latest Node Version)`:
- ```
-  git clone https://github.com/kazmi066/react-tailwind-rtk-starter
-  cd react-tailwind-rtk-starter
-  npm i
-  npm start
- ```
