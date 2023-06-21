@@ -85,7 +85,6 @@ body {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  min-height: 100vh;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -286,6 +285,9 @@ body {
 	}
 }
 @media only screen and (max-width: 640px) {
+  .hero-h1 {
+		font-size: 1.8rem;
+	}
 	.marquee-content {
 		font-size: 24px;
 		animation: marquee 12s linear infinite;
@@ -426,4 +428,8 @@ body {
     background-image: linear-gradient(0deg,#f3b817,transparent 47%),url(https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/63eb42814e419eef66a6f702_63e38ca896c94a9cc82dbb0a_hira.webp);
     background-position: 0 0,50% 50%;
     background-size: auto,cover;
+}
+.hero-content_wrapper {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
 }

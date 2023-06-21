@@ -169,7 +169,7 @@ const SubParkViewCity = () => {
 						<div className="section-location py-[4rem] w-10/12 mx-auto">
 							<div className="container mx-auto">
 								<h1 className="hero-h3 text-primary-blue text-left">IDEAL LOCATION</h1>
-								<div className="section-content pt-[5rem] flex grid grid-cols-2 xl:grid-cols-5 md:grid-cols-3 gap-2 sm:w-full w-10/12 mx-auto">
+								<div className="section-content pt-[2rem] flex grid grid-cols-1 xl:grid-cols-5 md:grid-cols-3 gap-2 sm:w-full w-10/12 mx-auto">
 									{
 										ideaLocation.map((item, index) => (
 											<Card key={index} className="mt-6 mx-auto w-full">

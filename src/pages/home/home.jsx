@@ -11,7 +11,7 @@ import { Feedback } from '../../components/feedback';
 const Home = () => {
 	return (
 		<>
-			<div className="hero bg-[aliceblue] h-[300px]" style={{
+			<div className="hero bg-[aliceblue] min-h-[80vh] sm:min-h-[100vh]" style={{
 				backgroundImage: 'url(https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/62024520658b7cdb5d349e5f_Hero%20Image.webp)',
 				backgroundPosition: '50% 50%',
 				backgroundSize: 'cover',

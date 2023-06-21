@@ -7,9 +7,11 @@ const About = () => {
 				<div className="section-about mx-auto">
 					<div className="container mx-auto">
 						<div className="section-header">
-							<h2 className="hero-h1 text-primary-blue text-center">
-								<span className="font-normal">CHAIR MAIN OF</span> FAIR DEAL MARKETING
-							</h2>
+							<div className="hero-content_wrapper">
+								<h2 className="hero-h1 text-primary-blue text-center">
+									<span className="font-normal">CHAIR MAIN OF</span> FAIR DEAL MARKETING
+								</h2>
+							</div>
 						</div>
 						<div className="section-content pt-[5rem] px-[1rem] sm:px-[5rem]">
 							<div className="lg:grid grid-cols-2 sm:gap-4">
@@ -30,7 +32,7 @@ const About = () => {
 									<div className="hero-h3 font-light text-primary-blue pb-[30px] py-[2rem] px-3 sm:text-left text-center">
 									CHAUDHRY ABDUL RAUF
 									</div>
-									<div className="text-gray-500 px-3 sm:text-left text-center">
+									<p className="text-gray-500 px-3 sm:text-left text-center">
 									For over 20 years, Fair Group of Companies has
 									been delivering Real Estate excellence in Pakistan.
 									Our Chairman Chaudhry Abdul Rauf is a visionary,
@@ -44,7 +46,7 @@ const About = () => {
 									Real Estate, Commodities and Service Industries which is the result
 									oftransparent follow-through on commitments,
 									innovations and customer satisfaction.
-									</div>
+									</p>
 								</div>
 							</div>
 						</div>

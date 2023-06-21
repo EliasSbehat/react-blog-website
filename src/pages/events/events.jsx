@@ -14,9 +14,11 @@ const Events = () => {
 				<div className="section-about mx-auto">
 					<div className="container mx-auto">
 						<div className="section-header">
-							<h2 className="hero-h1 text-primary-blue text-center">
-								KEEP YOUR SELF UPDATED WITH LATEST EVENTS
-							</h2>
+							<div className="hero-content_wrapper">
+								<h2 className="hero-h1 text-primary-blue text-center">
+									KEEP YOUR SELF UPDATED WITH LATEST EVENTS
+								</h2>
+							</div>
 						</div>
 						<div className="section-content pt-[5rem] px-[1rem] sm:px-[5rem]">
 							<div className="pvc-home-content_wrapper opacity-100 sm:opacity-80 hover:opacity-100">
