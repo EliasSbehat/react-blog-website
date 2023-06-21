@@ -1,4 +1,4 @@
-const Awards = () => {
+const Award = () => {
 	return (
 		<div className="section-content pt-[5rem] flex grid grid-cols-1 sm:grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
 			{
@@ -26,4 +26,4 @@ const Awards = () => {
 	);
 };
 
-export { Awards };
+export { Award };

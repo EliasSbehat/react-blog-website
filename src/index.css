@@ -39,6 +39,9 @@
   .primaryButton {
     @apply py-2 px-4 hover:bg-primary-hover transition-all bg-primary text-white;
   }
+  .primaryYellowButton {
+    @apply py-2 px-4 hover:bg-primary-strong-yellow transition-all bg-primary-yellow text-gray-800;
+  }
 }
 
 * {
@@ -167,6 +170,26 @@ body {
 }
 .section-about {
     padding-bottom: 0;
+}
+.section-contact-us {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 .section-pvc-home {
     padding-top: 6rem;
@@ -389,4 +412,18 @@ body {
 }
 .nav-active {
 	color: #f3b817 !important;
+}
+.appointment-image-2 {
+    overflow: hidden;
+    width: 15rem;
+    height: 15rem;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 50%;
+    background-image: -webkit-gradient(linear,left bottom,left top,from(#f3b817),color-stop(47%,transparent)),url(https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/63eb42814e419eef66a6f702_63e38ca896c94a9cc82dbb0a_hira.webp);
+    background-image: linear-gradient(0deg,#f3b817,transparent 47%),url(https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/63eb42814e419eef66a6f702_63e38ca896c94a9cc82dbb0a_hira.webp);
+    background-position: 0 0,50% 50%;
+    background-size: auto,cover;
 }

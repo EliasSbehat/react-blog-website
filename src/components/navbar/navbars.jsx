@@ -102,7 +102,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className={awardStyle} onClick={ () => setNavActive('nav-awards')}>AWARDS</NavLink>
+				<NavLink to="/awards" className={awardStyle} onClick={ () => setNavActive('nav-awards')}>AWARDS</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -110,7 +110,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className={contactStyle} onClick={ () => setNavActive('nav-contact')}>CONTACT US</NavLink>
+				<NavLink to="/contact-us" className={contactStyle} onClick={ () => setNavActive('nav-contact')}>CONTACT US</NavLink>
 			</Typography>
 			<Typography
 				as="li"

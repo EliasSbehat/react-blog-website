@@ -14,6 +14,7 @@ module.exports = withMT({
 				'primary-grey': '#999999',
 				'primary-blue': '#1c3d74',
 				'primary-yellow': '#f3b817',
+				'primary-strong-yellow': '#d3a117',
 				'primary-normal-yellow': '#f3b817',
 				'primary-strong-blue': '#152d47'
 			}

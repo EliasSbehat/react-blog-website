@@ -20,7 +20,7 @@ const Events = () => {
 						</div>
 						<div className="section-content pt-[5rem] px-[1rem] sm:px-[5rem]">
 							<div className="pvc-home-content_wrapper opacity-100 sm:opacity-80 hover:opacity-100">
-								<NavLink to="/park-view-city" target="_blank" className="pvc-home-link w-inline-block">
+								<NavLink to="/events/latestevent" target="_blank" className="pvc-home-link w-inline-block">
 									<div className="pb-8">
 										<img
 											src="https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c51114273781d6f481f0b9_324022609_720670059573236_4325219174042327251_n.jpg"
@@ -41,7 +41,7 @@ const Events = () => {
 						<div className="section-content pt-[5rem] flex grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
 							{
 								[{ marketEventName: 'Chairman Fair Group of Companies awarded Sales Partner of the Year 2022 by Park View City', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Chairman Fair Group of Companies awarded Sales Partner of the Year 2022 by Park View City', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Chairman Fair Group of Companies awarded Sales Partner of the Year 2022 by Park View City', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Fair Deal Marketing Team Pindi Boys Titled as ‘Champions’ for Mega Stars League ‘22. ', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Fair Deal Marketing Successfully Hosts Groundbreaking Ceremony of ‘Overseas Commercial Block. ', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }].map((item, index) => (
-									<NavLink to="/">
+									<NavLink to={`/events/${item.marketEventName}`}>
 										<Card key={index} className="mt-6 mx-auto">
 											<CardHeader color="blue-gray" className="relative h-56">
 												<img

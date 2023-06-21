@@ -1,9 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 import { Home } from '../../pages/home';
 import { ParkViewCity } from '../../pages/parkViewCity';
+import { SubParkViewCity } from '../../pages/subParkViewCity';
+import { SubCategoryParkViewCity } from '../../pages/subCategoryParkViewCity';
 import { Projects } from '../../pages/projects';
+import { SubProject } from '../../pages/subProject';
 import { About } from '../../pages/about';
 import { Events } from '../../pages/events';
+import { SubEvent } from '../../pages/subEvent';
+import { Awards } from '../../pages/awards';
+import { ContactUs } from '../../pages/contactUs';
 import { Login } from '../../pages/login';
 import { Register } from '../../pages/register';
 import { PrivateRoute } from '../privateRoute';
@@ -19,9 +25,15 @@ function App() {
 				<Routes>
 					<Route path="/" element={<PublicRoute component={Home} />} />
 					<Route path="/park-view-city" element={<PublicRoute component={ParkViewCity} />} />
+					<Route path="/park-view-city/:id" element={<PublicRoute component={SubParkViewCity} />} />
+					<Route path="/park-view-city/:id/:subId" element={<PublicRoute component={SubCategoryParkViewCity} />} />
 					<Route path="/projects" element={<PublicRoute component={Projects} />} />
+					<Route path="/projects/:id" element={<PublicRoute component={SubProject} />} />
 					<Route path="/about-us" element={<PublicRoute component={About} />} />
 					<Route path="/events" element={<PublicRoute component={Events} />} />
+					<Route path="/events/:id" element={<PublicRoute component={SubEvent} />} />
+					<Route path="/awards" element={<PublicRoute component={Awards} />} />
+					<Route path="/contact-us" element={<PublicRoute component={ContactUs} />} />
 					<Route path='/login' element={<PublicRoute restricted={true} component={Login} />} />
 					<Route path='/register' element={<PrivateRoute restricted={true} component={Register} />} />
 				</Routes>

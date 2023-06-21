@@ -14,7 +14,7 @@ const Projects = () => {
 							{
 								[{ projectName: 'Fair Square', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/609263b62ca8731fb6ad60aa_fs.png' }, { projectName: 'Mayfair Villas', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/6081ee9729ea98bef6fb16cb_6.jpg' }, { projectName: 'Mayfair Heights', img: '	https://uploads-ssl.webflow.com/60675406d40011636a539dc3/6081eac9ad2018452831e0a7_18.jpg' }].map((item, index) => (
 									<div key={index} className="pvc-home-content_wrapper opacity-100 sm:opacity-80 hover:opacity-100">
-										<NavLink to="/park-view-city" target="_blank" className="pvc-home-link w-inline-block">
+										<NavLink to={`/projects/${item.projectName}`} className="pvc-home-link w-inline-block">
 											<div className="">
 												<img
 													src={item.img}

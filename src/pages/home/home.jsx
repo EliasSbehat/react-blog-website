@@ -5,7 +5,7 @@ import {
 	Typography,
 } from '@material-tailwind/react';
 import { NavLink } from 'react-router-dom';
-import { Awards } from '../../components/award';
+import { Award } from '../../components/award';
 import { Feedback } from '../../components/feedback';
 
 const Home = () => {
@@ -171,7 +171,7 @@ const Home = () => {
 						{
 							[{ projectName: 'Mayfair Villas', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/6081ee9729ea98bef6fb16cb_6.jpg' }, { projectName: 'Mayfair Heights', img: '	https://uploads-ssl.webflow.com/60675406d40011636a539dc3/6081eac9ad2018452831e0a7_18.jpg' }].map((item, index) => (
 								<div key={index} className="pvc-home-content_wrapper opacity-100 sm:opacity-80 hover:opacity-100">
-									<NavLink to="/park-view-city" target="_blank" className="pvc-home-link w-inline-block">
+									<NavLink to={`/projects/${item.projectName}`} target="_blank" className="pvc-home-link w-inline-block">
 										<div className="">
 											<img
 												src={item.img}
@@ -232,7 +232,7 @@ const Home = () => {
 					<div className="section-header">
 						<div className="hero-content_wrapper"><h1 className="hero-h1 text-primary-blue text-center"><span className="font-normal">AWARDS OF </span> FAIR DEAL MARKETING</h1></div>
 					</div>
-					<Awards />
+					<Award />
 					<div className="awards-btn_wrapper flex pt-[4rem]">
 						<button className="mx-auto">
 							<NavLink to="/awards" className="primaryButton flex items-center text-black">
@@ -250,22 +250,24 @@ const Home = () => {
 					<div className="section-content pt-[5rem] flex grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
 						{
 							[{ marketEventName: 'Chairman Fair Group of Companies awarded Sales Partner of the Year 2022 by Park View City', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Fair Deal Marketing Team Pindi Boys Titled as ‘Champions’ for Mega Stars League ‘22. ', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Fair Deal Marketing Successfully Hosts Groundbreaking Ceremony of ‘Overseas Commercial Block. ', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }].map((item, index) => (
-								<Card key={index} className="mt-6 mx-auto">
-									<CardHeader color="blue-gray" className="relative h-56">
-										<img
-											src={item.img}
-											loading="lazy"
-											sizes="(max-width: 479px) 100vw, (max-width: 991px) 95vw, (max-width: 1279px) 77vw, (max-width: 1919px) 64vw, 1216px"
-											alt=""
-											className="object-cover w-full sm:h-full mx-auto"
-										/>
-									</CardHeader>
-									<CardBody>
-										<Typography variant="h5" color="text-black hero-h4" className="mb-2">
-											{item.marketEventName}
-										</Typography>
-									</CardBody>
-								</Card>
+								<NavLink to={`/events/${item.marketEventName}`}>
+									<Card key={index} className="mt-6 mx-auto">
+										<CardHeader color="blue-gray" className="relative h-56">
+											<img
+												src={item.img}
+												loading="lazy"
+												sizes="(max-width: 479px) 100vw, (max-width: 991px) 95vw, (max-width: 1279px) 77vw, (max-width: 1919px) 64vw, 1216px"
+												alt=""
+												className="object-cover w-full sm:h-full mx-auto"
+											/>
+										</CardHeader>
+										<CardBody>
+											<Typography variant="h5" color="text-black hero-h4" className="mb-2">
+												{item.marketEventName}
+											</Typography>
+										</CardBody>
+									</Card>
+								</NavLink>
 							))
 						}
 					</div>

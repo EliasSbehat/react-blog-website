@@ -1,1 +1,1 @@
-export { Awards } from './awards';
+export { Award } from './award';
