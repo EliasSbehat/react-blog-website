@@ -18,10 +18,10 @@ const Home = () => {
 				backgroundRepeat: 'no-repeat',
 				backgroundAttachment: 'fixed',
 			}}>
-				<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-blue text-center"><span class="font-normal">WeLCOME TO</span> FAIR DEAL MARKETING</h1></div>
+				<div className="hero-content_wrapper"><h1 className="hero-h1 text-primary-blue text-center"><span className="font-normal">WeLCOME TO</span> FAIR DEAL MARKETING</h1></div>
 			</div>
 			<div className="section-company marquee">
-				<div class="marquee-content">
+				<div className="marquee-content">
 					<div className="company-content">
 						{
 							[0, 1].map((item) => (
@@ -92,7 +92,7 @@ const Home = () => {
 										src="https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64072ec90a0b1f1dbd861948_Reception.webp"
 										loading="lazy"
 										sizes="(max-width: 479px) 100vw, (max-width: 767px) 85vw, (max-width: 991px) 42vw, (max-width: 1279px) 34vw, (max-width: 1919px) 28vw, 532.796875px"
-										srcset="
+										srcSet="
 										https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64072ec90a0b1f1dbd861948_Reception-p-500.webp   500w,
 										https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64072ec90a0b1f1dbd861948_Reception-p-800.webp   800w,
 										https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64072ec90a0b1f1dbd861948_Reception-p-1080.webp 1080w
@@ -133,7 +133,7 @@ const Home = () => {
 			<div className="section-pvc-home">
 				<div className="container mx-auto">
 					<div className="section-header">
-						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-blue text-center"><span class="font-normal">FEATURED</span> PROJECT</h1></div>
+						<div className="hero-content_wrapper"><h1 className="hero-h1 text-primary-blue text-center"><span className="font-normal">FEATURED</span> PROJECT</h1></div>
 					</div>
 					<div className="section-content pt-[5rem]">
 						<div className="pvc-home-content_wrapper opacity-100 sm:opacity-80 hover:opacity-100">
@@ -143,7 +143,7 @@ const Home = () => {
 										src="https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64070fcc174e612369a6adaf_MAP-min.webp"
 										loading="lazy"
 										sizes="(max-width: 479px) 100vw, (max-width: 991px) 95vw, (max-width: 1279px) 77vw, (max-width: 1919px) 64vw, 1216px"
-										srcset="
+										srcSet="
 										https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64070fcc174e612369a6adaf_MAP-min-p-500.webp   500w,
 										https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64070fcc174e612369a6adaf_MAP-min-p-800.webp   800w,
 										https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64070fcc174e612369a6adaf_MAP-min-p-1080.webp 1080w,
@@ -165,7 +165,7 @@ const Home = () => {
 			<div className="section-projects">
 				<div className="container mx-auto">
 					<div className="section-header">
-						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-blue text-center"><span class="font-normal">OUR</span> PROJECTS</h1></div>
+						<div className="hero-content_wrapper"><h1 className="hero-h1 text-primary-blue text-center"><span className="font-normal">OUR</span> PROJECTS</h1></div>
 					</div>
 					<div className="section-content pt-[5rem] flex sm:grid grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
 						{
@@ -201,7 +201,7 @@ const Home = () => {
 			<div className="section-figures pt-[6rem]">
 				<div className="container mx-auto">
 					<div className="section-header">
-						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-blue text-center"><span class="font-normal">WHY</span> FAIR DEAL MARKETING</h1></div>
+						<div className="hero-content_wrapper"><h1 className="hero-h1 text-primary-blue text-center"><span className="font-normal">WHY</span> FAIR DEAL MARKETING</h1></div>
 					</div>
 					<div className="section-content pt-[5rem] flex">
 						<div className="sm:grid grid-cols-3 mx-auto gap-8">
@@ -230,7 +230,7 @@ const Home = () => {
 			<div className="section-awards-home py-[6rem]">
 				<div className="container mx-auto">
 					<div className="section-header">
-						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-blue text-center"><span class="font-normal">AWARDS OF </span> FAIR DEAL MARKETING</h1></div>
+						<div className="hero-content_wrapper"><h1 className="hero-h1 text-primary-blue text-center"><span className="font-normal">AWARDS OF </span> FAIR DEAL MARKETING</h1></div>
 					</div>
 					<Awards />
 					<div className="awards-btn_wrapper flex pt-[4rem]">
@@ -245,7 +245,7 @@ const Home = () => {
 			<div className="section-events-home py-[6rem] bg-primary-strong-blue">
 				<div className="container mx-auto">
 					<div className="section-header">
-						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-yellow text-center"><span class="font-normal text-white">EVENTS OF </span> FAIR DEAL MARKETING</h1></div>
+						<div className="hero-content_wrapper"><h1 className="hero-h1 text-primary-yellow text-center"><span className="font-normal text-white">EVENTS OF </span> FAIR DEAL MARKETING</h1></div>
 					</div>
 					<div className="section-content pt-[5rem] flex grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
 						{

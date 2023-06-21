@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Home } from '../../pages/home';
+import { ParkViewCity } from '../../pages/parkViewCity';
 import { Login } from '../../pages/login';
 import { Register } from '../../pages/register';
 import { PrivateRoute } from '../privateRoute';
@@ -12,6 +13,7 @@ function App() {
 			<Layout>
 				<Routes>
 					<Route path="/" element={<PublicRoute component={Home} />} />
+					<Route path="/park-view-city" element={<PublicRoute component={ParkViewCity} />} />
 					<Route path='/login' element={<PublicRoute restricted={true} component={Login} />} />
 					<Route path='/register' element={<PrivateRoute restricted={true} component={Register} />} />
 				</Routes>

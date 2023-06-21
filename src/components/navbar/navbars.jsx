@@ -31,7 +31,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/park" className="flex items-center text-black hover:text-[#f3b817]">PARKVIEW CITY</NavLink>
+				<NavLink to="/park-view-city" className="flex items-center text-black hover:text-[#f3b817]">PARKVIEW CITY</NavLink>
 			</Typography>
 			<Typography
 				as="li"

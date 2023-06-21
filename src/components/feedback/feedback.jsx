@@ -7,9 +7,9 @@ const Feedback = () => {
 		<div className="section-feedback-home py-[3rem] bg-primary-normal-yellow">
 			<div className="container mx-auto">
 				<div className="section-header">
-					<div class="hero-content_wrapper max-w-5xl mx-auto">
-						<h1 class="hero-h1 text-center text-gray-800">GET IN TOUCH, TO GET THE BEST</h1>
-						<h1 class="hero-h4 text-center text-gray-800">Begin your journey of real estate excellence with the market leaders. Explore remote programs, full-time and part-time openings at Fair Deal Marketing.</h1>
+					<div className="hero-content_wrapper max-w-5xl mx-auto">
+						<h1 className="hero-h1 text-center text-gray-800">GET IN TOUCH, TO GET THE BEST</h1>
+						<h1 className="hero-h4 text-center text-gray-800">Begin your journey of real estate excellence with the market leaders. Explore remote programs, full-time and part-time openings at Fair Deal Marketing.</h1>
 					</div>
 				</div>
 				<div className="section-content pt-[2rem]">
