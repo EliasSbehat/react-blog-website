@@ -4,8 +4,7 @@ import { Feedback } from '../../components/feedback';
 const ParkViewCity = () => {
 	return (
 		<>
-			<div className="flex bg-[aliceblue]" style={{
-			}}>
+			<div className="flex bg-[aliceblue]">
 				<div className="w-full h-full">
 					<div className="grid grid-cols-1 sm:grid-cols-2">
 						<div className="pvc-isl">

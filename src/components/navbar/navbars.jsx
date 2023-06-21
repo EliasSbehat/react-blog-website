@@ -78,7 +78,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className={projectStyle} onClick={ () => setNavActive('nav-projects')}>OUR PROJECTS</NavLink>
+				<NavLink to="/projects" className={projectStyle} onClick={ () => setNavActive('nav-projects')}>OUR PROJECTS</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -86,7 +86,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className={aboutStyle} onClick={ () => setNavActive('nav-about')}>ABOUT US</NavLink>
+				<NavLink to="/about-us" className={aboutStyle} onClick={ () => setNavActive('nav-about')}>ABOUT US</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -94,7 +94,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className={eventStyle} onClick={ () => setNavActive('nav-events')}>EVENTS</NavLink>
+				<NavLink to="/events" className={eventStyle} onClick={ () => setNavActive('nav-events')}>EVENTS</NavLink>
 			</Typography>
 			<Typography
 				as="li"

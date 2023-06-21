@@ -125,7 +125,7 @@ const Home = () => {
 										</NavLink>
 									</button>
 								</div>
-							</div>``
+							</div>
 						</div>
 					</div>
 				</div>
