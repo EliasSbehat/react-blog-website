@@ -1,11 +1,16 @@
 import {
-	Button
+	Card,
+	CardHeader,
+	CardBody,
+	Typography,
 } from '@material-tailwind/react';
 import { NavLink } from 'react-router-dom';
+import { Awards } from '../../components/award';
+import { Feedback } from '../../components/feedback';
 
 const Home = () => {
 	return (
-		<div>
+		<>
 			<div className="hero bg-[aliceblue] h-[300px]" style={{
 				backgroundImage: 'url(https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/62024520658b7cdb5d349e5f_Hero%20Image.webp)',
 				backgroundPosition: '50% 50%',
@@ -114,13 +119,13 @@ const Home = () => {
 								property currently available.
 								</div>
 								<div className="btn_wrapper pt-[20px] flex">
-									<Button className="mx-auto sm:mx-3">
+									<button className="mx-auto sm:mx-3">
 										<NavLink to="/about-us" className="primaryButton flex items-center text-black">
 										LEARN MORE
 										</NavLink>
-									</Button>
+									</button>
 								</div>
-							</div>
+							</div>``
 						</div>
 					</div>
 				</div>
@@ -157,7 +162,117 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+			<div className="section-projects">
+				<div className="container mx-auto">
+					<div className="section-header">
+						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-blue text-center"><span class="font-normal">OUR</span> PROJECTS</h1></div>
+					</div>
+					<div className="section-content pt-[5rem] flex sm:grid grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
+						{
+							[{ projectName: 'Mayfair Villas', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/6081ee9729ea98bef6fb16cb_6.jpg' }, { projectName: 'Mayfair Heights', img: '	https://uploads-ssl.webflow.com/60675406d40011636a539dc3/6081eac9ad2018452831e0a7_18.jpg' }].map((item, index) => (
+								<div key={index} className="pvc-home-content_wrapper opacity-100 sm:opacity-80 hover:opacity-100">
+									<NavLink to="/park-view-city" target="_blank" className="pvc-home-link w-inline-block">
+										<div className="">
+											<img
+												src={item.img}
+												loading="lazy"
+												sizes="(max-width: 479px) 100vw, (max-width: 991px) 95vw, (max-width: 1279px) 77vw, (max-width: 1919px) 64vw, 1216px"
+												alt=""
+												className="object-cover w-full sm:h-full mx-auto"
+											/>
+										</div>
+										<div className="text-primary-blue text-normal hero-h3 text-center">
+											{item.projectName}
+										</div>
+									</NavLink>
+								</div>
+							))
+						}
+					</div>
+					<div className="projects-btn_wrapper flex pt-[4rem]">
+						<button className="mx-auto">
+							<NavLink to="/projects" className="primaryButton flex items-center text-black">
+								VIEW ALL PROJECTS
+							</NavLink>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div className="section-figures pt-[6rem]">
+				<div className="container mx-auto">
+					<div className="section-header">
+						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-blue text-center"><span class="font-normal">WHY</span> FAIR DEAL MARKETING</h1></div>
+					</div>
+					<div className="section-content pt-[5rem] flex">
+						<div className="sm:grid grid-cols-3 mx-auto gap-8">
+							<div className="figures-content text-center">
+								<div className="text-size-figures">
+									<span className="figures hero-header text-primary-blue">20+</span>
+								</div>
+								<div className="text-sm font-medium text-primary-blue hero-h4">YEARS EXPERIENCE</div>
+							</div>
+							<div className="figures-content text-center">
+								<div className="text-size-figures">
+									<span className="figures hero-header text-primary-blue">10+</span>
+								</div>
+								<div className="text-sm font-medium text-primary-blue hero-h4">PRJOECTS DELIVERED</div>
+							</div>
+							<div className="figures-content text-center">
+								<div className="text-size-figures">
+									<span className="figures hero-header text-primary-blue">100+</span>
+								</div>
+								<div className="text-sm font-medium text-primary-blue hero-h4">SATISFIED CUSTOMERS</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div className="section-awards-home py-[6rem]">
+				<div className="container mx-auto">
+					<div className="section-header">
+						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-blue text-center"><span class="font-normal">AWARDS OF </span> FAIR DEAL MARKETING</h1></div>
+					</div>
+					<Awards />
+					<div className="awards-btn_wrapper flex pt-[4rem]">
+						<button className="mx-auto">
+							<NavLink to="/awards" className="primaryButton flex items-center text-black">
+								VIEW ALL AWARDS
+							</NavLink>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div className="section-events-home py-[6rem] bg-primary-strong-blue">
+				<div className="container mx-auto">
+					<div className="section-header">
+						<div class="hero-content_wrapper"><h1 class="hero-h1 text-primary-yellow text-center"><span class="font-normal text-white">EVENTS OF </span> FAIR DEAL MARKETING</h1></div>
+					</div>
+					<div className="section-content pt-[5rem] flex grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
+						{
+							[{ marketEventName: 'Chairman Fair Group of Companies awarded Sales Partner of the Year 2022 by Park View City', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Fair Deal Marketing Team Pindi Boys Titled as ‘Champions’ for Mega Stars League ‘22. ', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Fair Deal Marketing Successfully Hosts Groundbreaking Ceremony of ‘Overseas Commercial Block. ', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }].map((item, index) => (
+								<Card key={index} className="mt-6 mx-auto">
+									<CardHeader color="blue-gray" className="relative h-56">
+										<img
+											src={item.img}
+											loading="lazy"
+											sizes="(max-width: 479px) 100vw, (max-width: 991px) 95vw, (max-width: 1279px) 77vw, (max-width: 1919px) 64vw, 1216px"
+											alt=""
+											className="object-cover w-full sm:h-full mx-auto"
+										/>
+									</CardHeader>
+									<CardBody>
+										<Typography variant="h5" color="text-black hero-h4" className="mb-2">
+											{item.marketEventName}
+										</Typography>
+									</CardBody>
+								</Card>
+							))
+						}
+					</div>
+				</div>
+			</div>
+			<Feedback />
+		</>
 	);
 };
 export { Home };

@@ -3,8 +3,7 @@ import {
 	Navbar,
 	MobileNav,
 	Typography,
-	IconButton,
-	Button
+	IconButton
 } from '@material-tailwind/react';
 import { NavLink } from 'react-router-dom';
 
@@ -80,7 +79,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<Button color="blue"><a href="tel:+9251111050106" className="flex items-center text-black primaryButton">ENQUIRE?</a></Button>
+				<button><a href="tel:+9251111050106" className="flex items-center text-black primaryButton">ENQUIRE?</a></button>
 			</Typography>
 		</ul>
 	);
