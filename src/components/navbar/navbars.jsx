@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 
 const Navbars = () => {
 	const [openNav, setOpenNav] = useState(false);
+	const [navActive, setNavActive] = useState('');
 	useEffect(() => {
 		window.addEventListener(
 			'resize',
@@ -23,6 +24,44 @@ const Navbars = () => {
 		background: 'white',
 		zIndex: 50, // Adjust this value based on your project's z-index requirements
 	};
+	const navActiveLinkStyles = 'flex items-center text-black hover:text-[#f3b817] nav-active';
+	const navLinkStyles = 'flex items-center text-black hover:text-[#f3b817]';
+	let parkLinkStyle;
+	let projectStyle;
+	let aboutStyle;
+	let eventStyle;
+	let awardStyle;
+	let contactStyle;
+	if (navActive === 'nav-parkview') {
+		parkLinkStyle = navActiveLinkStyles;
+	} else {
+		parkLinkStyle = navLinkStyles;
+	}
+	if (navActive === 'nav-projects') {
+		projectStyle = navActiveLinkStyles;
+	} else {
+		projectStyle = navLinkStyles;
+	}
+	if (navActive === 'nav-about') {
+		aboutStyle = navActiveLinkStyles;
+	} else {
+		aboutStyle = navLinkStyles;
+	}
+	if (navActive === 'nav-events') {
+		eventStyle = navActiveLinkStyles;
+	} else {
+		eventStyle = navLinkStyles;
+	}
+	if (navActive === 'nav-awards') {
+		awardStyle = navActiveLinkStyles;
+	} else {
+		awardStyle = navLinkStyles;
+	}
+	if (navActive === 'nav-contact') {
+		contactStyle = navActiveLinkStyles;
+	} else {
+		contactStyle = navLinkStyles;
+	}
 	const navList = (
 		<ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-4">
 			<Typography
@@ -31,7 +70,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/park-view-city" className="flex items-center text-black hover:text-[#f3b817]">PARKVIEW CITY</NavLink>
+				<NavLink to="/park-view-city" className={parkLinkStyle} onClick={ () => setNavActive('nav-parkview')}>PARKVIEW CITY</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -39,7 +78,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className="flex items-center text-black hover:text-[#f3b817]">OUR PROJECTS</NavLink>
+				<NavLink to="/" className={projectStyle} onClick={ () => setNavActive('nav-projects')}>OUR PROJECTS</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -47,7 +86,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className="flex items-center text-black hover:text-[#f3b817]">ABOUT US</NavLink>
+				<NavLink to="/" className={aboutStyle} onClick={ () => setNavActive('nav-about')}>ABOUT US</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -55,7 +94,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className="flex items-center text-black hover:text-[#f3b817]">EVENTS</NavLink>
+				<NavLink to="/" className={eventStyle} onClick={ () => setNavActive('nav-events')}>EVENTS</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -63,7 +102,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className="flex items-center text-black hover:text-[#f3b817]">AWARDS</NavLink>
+				<NavLink to="/" className={awardStyle} onClick={ () => setNavActive('nav-awards')}>AWARDS</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -71,7 +110,7 @@ const Navbars = () => {
 				color="blue-gray"
 				className="p-1 text-[11px] xl:text-sm"
 			>
-				<NavLink to="/" className="flex items-center text-black hover:text-[#f3b817]">CONTACT US</NavLink>
+				<NavLink to="/" className={contactStyle} onClick={ () => setNavActive('nav-contact')}>CONTACT US</NavLink>
 			</Typography>
 			<Typography
 				as="li"
@@ -89,11 +128,11 @@ const Navbars = () => {
 				<Navbar className="mx-auto max-w-screen-xl py-2 px-2 lg:px-8 lg:py-1 shadow-none">
 					<div className="container mx-auto flex items-center justify-between text-blue-gray-900">
 						<Typography
-							as="a"
-							href="/"
 							className="mr-4 cursor-pointer py-1.5 font-medium"
 						>
-							<img src="https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64070199c344656688f93129_FDM.webp" loading="lazy" alt="" className="w-9/12 xl:w-11/12" />
+							<NavLink to="/" onClick={ () => setNavActive('nav-logo')}>
+								<img src="https://uploads-ssl.webflow.com/605380ce976c93769ead7db0/64070199c344656688f93129_FDM.webp" loading="lazy" alt="" className="w-9/12 xl:w-11/12" />
+							</NavLink>
 						</Typography>
 						<div className="hidden lg:block">{navList}</div>
 						<IconButton

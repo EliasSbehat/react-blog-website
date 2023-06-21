@@ -5,12 +5,14 @@ import { Login } from '../../pages/login';
 import { Register } from '../../pages/register';
 import { PrivateRoute } from '../privateRoute';
 import { PublicRoute } from '../publicRoute';
+import { ScrollTop } from '../scrollTop';
 import Styles from './app.module.scss';
 
 function App() {
 	return (
 		<div>
 			<Layout>
+				<ScrollTop />
 				<Routes>
 					<Route path="/" element={<PublicRoute component={Home} />} />
 					<Route path="/park-view-city" element={<PublicRoute component={ParkViewCity} />} />

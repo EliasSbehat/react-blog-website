@@ -46,7 +46,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* scroll bar */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
 
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #52B4FF;
+}
 input {
 	border-radius: 0px !important;
 }
@@ -368,4 +381,7 @@ body {
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
+}
+.nav-active {
+	color: #f3b817 !important;
 }
