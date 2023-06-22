@@ -1,113 +1,302 @@
+import React, { useEffect, useState } from "react";
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  Typography,
-  Avatar,
-  Chip,
-  Tooltip,
-  Progress,
+	Button,
+	Card,
+	CardHeader,
+	CardBody,
+	CardFooter,
+	Typography,
+	Avatar,
+	Chip,
+	Tooltip,
+	Progress,
+	Dialog,
+	DialogHeader,
+	DialogBody,
+	DialogFooter,
+	Input,
+	Checkbox,
+	Textarea
 } from "@material-tailwind/react";
-import { authorsTableData } from "../../../data";
+import { gbConfig } from '../../../config';
 
 export const ManageProjects = () => {
-  return (
-    <>
-		<div className="mt-12 mb-8 flex flex-col gap-12">
-			<Card>
-				<CardHeader variant="gradient" color="blue" className="mb-8 p-6">
-					<Typography variant="h6" color="white">
-					Authors Table
-					</Typography>
-				</CardHeader>
-				<CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
-					<table className="w-full min-w-[640px] table-auto">
-						<thead>
-							<tr>
-								{["author", "function", "status", "employed", ""].map(
-									(el) => (
-									<th
-										key={el}
-										className="border-b border-blue-gray-50 py-3 px-5 text-left"
-									>
-										<Typography
-										variant="small"
-										className="text-[11px] font-bold uppercase text-blue-gray-400"
-										>
-										{el}
-										</Typography>
-									</th>
-									)
-								)}
-							</tr>
-						</thead>
-						<tbody>
-							{authorsTableData.map(
-							({ img, name, email, job, online, date }, key) => {
-								const className = `py-3 px-5 ${
-								key === authorsTableData.length - 1
-									? ""
-									: "border-b border-blue-gray-50"
-								}`;
-
-								return (
-								<tr key={name}>
-									<td className={className}>
-										<div className="flex items-center gap-4">
-											<Avatar src={img} alt={name} size="sm" />
+	const [open, setOpen] = useState(false);
+	const [file, setFile] = useState("");
+	const [projects, setProjects] = useState(null);
+	const [selectedImgFile, setSelectedImgFile] = useState(null);
+	const [selectedPdfFile, setSelectedPdfFile] = useState(null);
+	const [project_name, setName] = useState("");
+	const [project_author, setAuthor] = useState("");
+	const [project_introduction, setIntroduction] = useState("");
+	const [about_developers, setDeveloper] = useState("");
+	const [project_video, setVideo] = useState("");
+	const [project_location, setLocation] = useState("");
+	const API_URL = gbConfig.API_URL;
+	useEffect(() => {
+		handleGetAll();
+	}, []);
+	const handleGetAll = async () => {
+		await fetch(`${API_URL}/project/get`).then((response)=>{
+			return response.json();
+		}).then((data)=>{
+			console.log(data, 'data');
+			setProjects(data);
+		}).catch((error)=>{
+			console.error('There was a problem with the fetch operation:', error);
+		});
+	}
+	const handleSave = async () => {
+		if (!project_name) {
+			alert("Please enter a project name");
+			return;
+		}
+		if (!selectedImgFile) {
+			alert("Please choose a project image");
+			return;
+		}
+		if (!selectedPdfFile) {
+			alert("Please choose a project payment pdf");
+			return;
+		}
+		const formData = new FormData();
+    	formData.append("project_image", selectedImgFile);
+    	formData.append("project_pdf", selectedPdfFile);
+    	formData.append("project_name", project_name);
+    	formData.append("project_author", project_author);
+    	formData.append("project_introduction", project_introduction);
+    	formData.append("about_developers", about_developers);
+    	formData.append("project_video", project_video);
+    	formData.append("project_location", project_location);
+		try {
+			await fetch(`${API_URL}/project/add`, {
+				method: "POST",
+				body: formData,
+			}).then((response)=>{
+				if (response.ok) {
+					handleFormat();
+					handleGetAll();
+				} else {
+					alert("failed");
+				}
+				return response.json();
+			}).then((data)=>{
+				if (data.msg==="exist") {
+					alert("The project name has already exist.");
+				}
+			}).catch((error)=>{
+				console.error('There was a problem with the fetch operation:', error);
+			});
+		} catch (error) {
+			alert("Error while saved: " + error.message);
+		}
+	}
+	const handleFormat = () => {
+		setName("");
+		setAuthor("");
+		setIntroduction("");
+		setDeveloper("");
+		setVideo("");
+		setLocation("");
+		setSelectedPdfFile(null);
+		setSelectedImgFile(null);
+		setFile("");
+		setOpen(false);
+	}
+	const handleOpen = () => setOpen((cur) => !cur);
+	const handleChange = (e) => {
+        setFile(URL.createObjectURL(e.target.files[0]));
+		setSelectedImgFile(e.target.files[0]);
+    }
+	const handlePDFChange = (e) => {
+		setSelectedPdfFile(e.target.files[0]);
+	}
+	const setInputHandler= (e) => {
+		switch (e.target.name) {
+			case 'project_name':
+				setName(e.target.value);
+				break;
+			case 'project_author':
+				setAuthor(e.target.value);
+				break;
+			case 'project_introduction':
+				setIntroduction(e.target.value);
+				break;
+			case 'about_developers':
+				setDeveloper(e.target.value);
+				break;
+			case 'project_video':
+				setVideo(e.target.value);
+				break;
+			case 'project_location':
+				setLocation(e.target.value);
+			break;
+		
+			default:
+				break;
+		}
+	}
+	return (
+		<>
+			<div className="mt-12 mb-8 flex flex-col gap-12">
+				<Card>
+					<CardHeader variant="gradient" color="blue" className="mb-8 p-6">
+						<Typography variant="h6" color="white">
+						Projects Manage
+						</Typography>
+					</CardHeader>
+					<CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
+						<Button className="mx-6" onClick={handleOpen}>Create</Button>
+						<Dialog open={open} handler={handleOpen}>
+							<DialogHeader>Create New Project</DialogHeader>
+							<DialogBody divider className="h-[23rem] sm:h-[40rem] overflow-scroll">
+								<Typography className="font-normal">
+									<div className=" w-form">
+										<div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
 											<div>
-											<Typography
-												variant="small"
-												color="blue-gray"
-												className="font-semibold"
-											>
-												{name}
-											</Typography>
-											<Typography className="text-xs font-normal text-blue-gray-500">
-												{email}
-											</Typography>
+												<Input variant="standard" onChange={setInputHandler} name="project_name" value={project_name} label="Project Name" />
+											</div>
+											<div>
+												<Input variant="standard" onChange={setInputHandler} name="project_author" value={project_author} label="Author" />
 											</div>
 										</div>
-									</td>
-									<td className={className}>
-										<Typography className="text-xs font-semibold text-blue-gray-600">
-											{job[0]}
-										</Typography>
-										<Typography className="text-xs font-normal text-blue-gray-500">
-											{job[1]}
-										</Typography>
-									</td>
-									<td className={className}>
-										<Chip
-											variant="gradient"
-											color={online ? "green" : "blue-gray"}
-											value={online ? "online" : "offline"}
-											className="py-0.5 px-2 text-[11px] font-medium"
-										/>
-									</td>
-									<td className={className}>
-										<Typography className="text-xs font-semibold text-blue-gray-600">
-											{date}
-										</Typography>
-									</td>
-									<td className={className}>
-										<Typography
-											as="a"
-											href="#"
-											className="text-xs font-semibold text-blue-gray-600"
+										<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-[1rem] sm:pt-[2rem]">
+											<div>
+												<Textarea variant="standard" onChange={setInputHandler} name="project_introduction" value={project_introduction} label="Project Introduction" />
+											</div>
+											<div>
+												<Textarea variant="standard" onChange={setInputHandler} name="about_developers" value={about_developers} label="About Developers" />
+											</div>
+										</div>
+										<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-[1rem] sm:pt-[2rem]">
+											<div>
+												<Input variant="standard" onChange={setInputHandler} name="project_video" value={project_video} label="Youtube Video Link" />
+											</div>
+											<div>
+												<Input variant="standard" onChange={setInputHandler} name="project_location" value={project_location} label="Location: Google map link" />
+											</div>
+										</div>
+										<div className="pt-[2rem]">
+											<h5>Add Image:</h5>
+											<input type="file" accept="image/*" onChange={handleChange} />
+											{
+												file&&
+													<img
+														className="h-full w-full rounded-lg mt-2"
+														src={file}
+														alt="image"
+													/>
+											}
+										</div>
+										<div className="pt-[2rem]">
+											<h5>Add Payment plan PDF:</h5>
+											<input type="file" accept="application/pdf" onChange={handlePDFChange} />
+										</div>
+									</div>
+								</Typography>
+							</DialogBody>
+							<DialogFooter className="space-x-2">
+								<Button variant="outlined" color="red" onClick={handleOpen}>
+									close
+								</Button>
+								<Button variant="gradient" color="green" onClick={handleSave}>
+									Save
+								</Button>
+							</DialogFooter>
+						</Dialog>
+						<table className="w-full min-w-[640px] table-auto">
+							<thead>
+								<tr>
+									{["Action","project name", "author", "image", "introduction", "about developers", "video", "payment plan", "location", "created date"].map(
+										(el) => (
+										<th
+											key={el}
+											className="border-b border-blue-gray-50 py-3 px-5 text-left"
 										>
-											Edit
-										</Typography>
-									</td>
+											<Typography
+											variant="small"
+											className="text-[11px] font-bold uppercase text-blue-gray-400"
+											>
+											{el}
+											</Typography>
+										</th>
+										)
+									)}
 								</tr>
-								);
-							}
-							)}
-						</tbody>
-					</table>
-				</CardBody>
-			</Card>
-		</div>
-    </>
-  );
+							</thead>
+							<tbody>
+								{projects && projects.map(
+								(item, key) => {
+									const className = `py-2 px-2 ${
+									key === projects.length - 1
+										? ""
+										: "border-b border-blue-gray-50"
+									}`;
+									const ellipsisClassName = 'px-4 py-2 border w-52 overflow-hidden overflow-ellipsis whitespace-nowrap';
+
+									return (
+									<tr key={key}>
+										<td className={className}>
+											<Typography
+												as="a"
+												href="#"
+												className="text-xs font-semibold text-blue-gray-600 underline"
+											>
+												Edit
+											</Typography>
+											<Typography>-</Typography>
+											<Typography
+												as="a"
+												href="#"
+												className="text-xs font-semibold text-blue-gray-600 underline"
+											>
+												Delete
+											</Typography>
+										</td>
+										<td className={className}>
+											<Typography className={ellipsisClassName} title={item.project_name}>{item.project_name}</Typography>
+										</td>
+										<td className={className}>
+											<Typography className={ellipsisClassName} title={item.project_author}>{item.project_author}</Typography>
+										</td>
+										<td className={className}>
+											<p className="w-52">
+												<a href={`${API_URL}/projects/images/${item.project_image}`} target="_blank">
+													<img
+														className="h-full w-full rounded-sm mt-2"
+														src={`${API_URL}/projects/images/${item.project_image}`}
+														alt="image"
+													/>
+												</a>
+											</p>
+										</td>
+										<td className={className}>
+											<Typography className={ellipsisClassName} title={item.project_introduction}>{item.project_introduction}</Typography>
+										</td>
+										<td className={className}>
+											<Typography className={ellipsisClassName} title={item.about_developers}>{item.about_developers}</Typography>
+										</td>
+										<td className={className}>
+											<Typography title={item.project_video}><a href={item.project_video} target="_blank">{item.project_video}</a></Typography>
+										</td>
+										<td className={className}>
+											<Typography className={ellipsisClassName} title={item.project_pdf}><a href={`${API_URL}/projects/pdf/${item.project_pdf}`} target="_blank">{item.project_pdf}</a></Typography>
+										</td>
+										<td className={className}>
+											<Typography className={ellipsisClassName} title={item.project_location}><a href={item.project_location} target="_blank">{item.project_location}</a></Typography>
+										</td>
+										<td className={className}>
+											<Typography title={item.created_date}>{item.created_date}</Typography>
+										</td>
+									</tr>
+									);
+								}
+								)}
+							</tbody>
+						</table>
+					</CardBody>
+				</Card>
+			</div>
+		</>
+	);
 };

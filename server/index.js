@@ -2,19 +2,22 @@ const express = require('express');
 const rateLimit = require('express-rate-limit');
 const http = require('http');
 var methodOverride = require("method-override")
+const fileUpload = require('express-fileupload');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const con = require("./config/db.js");
 
+require('dotenv').config();
+
 app.use((req, res, next) => {
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
   next();
 });
-
+app.use(fileUpload());
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow requests from this origin only
+    origin: process.env.FRONTEND_HOST, // Allow requests from this origin only
     credentials: true, // Allow credentials (cookies, authentication headers)
   })
 );
@@ -26,7 +29,7 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-require('dotenv').config();
+
 
 // connecting route to database
 app.use(function (req, res, next) {
@@ -44,6 +47,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 const server = http.createServer(app);
 app.use('/auth', require('./routes/auth'));
+app.use('/project', require('./routes/project'));
 
 server.listen(PORT, function () {
   console.log('Server is running on Port: ' + PORT);

@@ -27,7 +27,6 @@ const PrivateRoute = ({ component: Component, ...props }) => {
 	return (
 		<>
 			{
-				// user
 				!users
 					? <Navigate to={{ pathname: '/admin/login', state: { from: props.location } }} replace />
 					: <div className="min-h-screen bg-blue-gray-50/50">

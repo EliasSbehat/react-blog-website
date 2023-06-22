@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import axios from 'axios';
 import { setCredentials } from '../store/auth/authSlice';
+import { gbConfig } from '../config';
 
 let store;
 
@@ -22,7 +23,7 @@ export const apiErrorResponse = (error) => {
 };
 
 const instance = axios.create({
-	baseURL: 'http://localhost:4000',
+	baseURL: gbConfig.API_URL,
 	withCredentials: true
 });
 
