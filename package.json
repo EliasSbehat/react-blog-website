@@ -10,7 +10,6 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.27.2",
-    "eslint-config-airbnb": "^18.2.1",
     "node-sass": "^7.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
@@ -30,9 +29,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint . --ext .js,.jsx && npx stylelint '**/*.scss' '**/*.css'",
-    "fix-lint": "eslint . --ext .js,.jsx --fix && npx stylelint '**/*.scss' '**/*.css' --fix"
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -48,13 +45,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.12",
-    "eslint": "^8.13.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.4.0",
     "postcss": "^8.4.17",
     "postcss-scss": "^4.0.4",
     "tailwindcss": "^3.1.8"

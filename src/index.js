@@ -7,15 +7,17 @@ import { ThemeProvider } from '@material-tailwind/react';
 import store from './store';
 import { App } from './components/app';
 import reportWebVitals from './reportWebVitals';
-
+import { MaterialTailwindControllerProvider } from "./context";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
 	<Provider store={store}>
 		<ThemeProvider>
-			<Router>
-				<App />
-			</Router>
+			<MaterialTailwindControllerProvider>
+				<Router>
+					<App />
+				</Router>
+			</MaterialTailwindControllerProvider>
 		</ThemeProvider>
 	</Provider>
 );

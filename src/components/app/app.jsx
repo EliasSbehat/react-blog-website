@@ -15,6 +15,9 @@ import { Register } from '../../pages/register';
 import { PrivateRoute } from '../privateRoute';
 import { PublicRoute } from '../publicRoute';
 import { ScrollTop } from '../scrollTop';
+//admin panel
+import { ManageProjects } from '../../pages/admin/manageProjects';
+import { ManageEvents } from '../../pages/admin/manageEvents';
 import Styles from './app.module.scss';
 
 function App() {
@@ -34,7 +37,9 @@ function App() {
 					<Route path="/events/:id" element={<PublicRoute component={SubEvent} />} />
 					<Route path="/awards" element={<PublicRoute component={Awards} />} />
 					<Route path="/contact-us" element={<PublicRoute component={ContactUs} />} />
-					<Route path='/login' element={<PublicRoute restricted={true} component={Login} />} />
+					<Route path='/admin/login' element={<PublicRoute restricted={true} component={Login} />} />
+					<Route path='/admin/projects' element={<PrivateRoute restricted={true} component={ManageProjects} />} />
+					<Route path='/admin/events' element={<PrivateRoute restricted={true} component={ManageEvents} />} />
 					<Route path='/register' element={<PrivateRoute restricted={true} component={Register} />} />
 				</Routes>
 			</Layout>

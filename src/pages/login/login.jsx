@@ -2,6 +2,16 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import {
+	Card,
+	CardHeader,
+	CardBody,
+	CardFooter,
+	Input,
+	Checkbox,
+	Button,
+	Typography,
+} from "@material-tailwind/react";
 import { loginUser } from '../../store/auth/authActions';
 import { errorToast } from '../../utils';
 
@@ -32,45 +42,38 @@ export const Login = () => {
 	};
 
 	return (
-		<section className="p-8">
-			<Toaster />
-			<form onSubmit={signinUser}>
-				<div>
-					<h1>Sign In</h1>
-					<p className="mt-4 mb-8">If you don't have an account <br/>
-						You can <Link to='/register' className="link">Register here !</Link>
-					</p>
+		<>
+			<img
+				src="https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80"
+				className="absolute inset-0 z-0 h-full w-full object-cover"
+			/>
+			<div className="absolute inset-0 z-0 h-full w-full bg-black/50">
+				<div className="container mx-auto p-4">
+					<Card className="absolute top-2/4 left-2/4 w-full max-w-[24rem] -translate-y-2/4 -translate-x-2/4">
+						<CardHeader
+							variant="gradient"
+							color="blue"
+							className="mb-4 grid h-28 place-items-center"
+						>
+							<Typography variant="h3" color="white">
+							Sign In
+							</Typography>
+						</CardHeader>
+						<CardBody className="flex flex-col gap-4">
+							<Input type="email" label="Email" size="lg" />
+							<Input type="password" label="Password" size="lg" />
+							<div className="-ml-2.5">
+								<Checkbox label="Remember Me" />
+							</div>
+						</CardBody>
+						<CardFooter className="pt-0">
+							<Button variant="gradient" fullWidth>
+							Sign In
+							</Button>
+						</CardFooter>
+					</Card>
 				</div>
-				<div>
-					<label className="block text-primary-grey text-[13px] font-medium pb-1">Email</label>
-					<div className="relative">
-						<input
-							className="inputField w-full mb-8"
-							name="email"
-							placeholder="Enter your email"
-							id="email"
-							ref={(e) => { email = e; } }
-							type="email"
-							required />
-					</div>
-				</div>
-				<div>
-					<label className="block text-primary-grey text-[13px] font-medium pb-1">Password</label>
-					<div className="relative">
-						<input
-							className="inputField w-full mb-8"
-							name="password"
-							placeholder="Enter your password"
-							id="password"
-							ref={(e) => { password = e; } }
-							type="password"
-							required />
-					</div>
-				</div>
-				<button type="submit" className="primaryButton mt-4">
-					{loading ? 'Loading...' : 'Login'}
-				</button>
-			</form>
-		</section>
+			</div>
+		</>
 	);
 };
