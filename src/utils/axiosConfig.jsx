@@ -22,7 +22,7 @@ export const apiErrorResponse = (error) => {
 };
 
 const instance = axios.create({
-	baseURL: 'http://localhost:3000',
+	baseURL: 'http://localhost:4000',
 	withCredentials: true
 });
 
@@ -45,10 +45,16 @@ instance.interceptors.request.use(
 let calledOnce = false;
 
 instance.interceptors.response.use((response) => {
+	if (response.data.msg === 'success') {
+		axios.defaults.headers.common.Authorization = `Bearer ${response.data.data.token}`;
+		store.dispatch(setCredentials({
+			user: response.data.data,
+			access_token: response.data.data.token
+		}));
+	}
 	return response;
 }, async (error) => {
 	const originalRequest = error.config;
-
 	if (error.response !== null) {
 		if (error.response.status === 403 && !originalRequest._retry) {
 			if (!calledOnce) {

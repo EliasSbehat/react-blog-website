@@ -1,22 +1,35 @@
-import { useSelector } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import {
 	Sidenav,
 	DashboardNavbar
 } from "../admin/layout";
 import routes from "../admin/routes";
+import { verifyUserDetails } from '../../store/auth/authActions';
 import { useMaterialTailwindController } from "../../context";
+import { errorToast, successToast } from '../../utils';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
 	const [controller, dispatch] = useMaterialTailwindController();
 	const { sidenavType } = controller;
-	const { user } = useSelector((state) => state.auth);
+	const { users } = useSelector((state) => state.auth);
+	const reduxDispatch = useDispatch();
+	useEffect(() => {
+		reduxDispatch(verifyUserDetails({
+			token: localStorage.getItem("userAccessTokens")
+		}))
+			.unwrap()
+			.catch((errorData) => {
+				errorToast(errorData.error);
+			});
+	}, []);
 	return (
 		<>
 			{
-				user
-				// !user
-					? <Navigate to={{ pathname: '/admin-login', state: { from: props.location } }} replace />
+				// user
+				!users
+					? <Navigate to={{ pathname: '/admin/login', state: { from: props.location } }} replace />
 					: <div className="min-h-screen bg-blue-gray-50/50">
 					<Sidenav
 						routes={routes}

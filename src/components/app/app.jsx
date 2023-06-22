@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { Toaster } from "react-hot-toast";
 import { Home } from '../../pages/home';
 import { ParkViewCity } from '../../pages/parkViewCity';
 import { SubParkViewCity } from '../../pages/subParkViewCity';
@@ -24,6 +25,7 @@ function App() {
 	return (
 		<div>
 			<Layout>
+				<Toaster />
 				<ScrollTop />
 				<Routes>
 					<Route path="/" element={<PublicRoute component={Home} />} />

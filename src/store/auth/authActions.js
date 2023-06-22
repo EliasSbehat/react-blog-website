@@ -23,7 +23,7 @@ export const loginUser = createAsyncThunk('user/login', async ({
 	email, password
 }, { rejectWithValue }) => {
 	try {
-		const response = await axiosConfig.post('/login', {
+		const response = await axiosConfig.post('/auth/signin', {
 			email, password
 		});
 
@@ -35,9 +35,11 @@ export const loginUser = createAsyncThunk('user/login', async ({
 	}
 });
 
-export const verifyUserDetails = createAsyncThunk('user/verify', async (_, { rejectWithValue }) => {
+export const verifyUserDetails = createAsyncThunk('user/verify', async ({token}, { rejectWithValue }) => {
 	try {
-		const response = await axiosConfig.get('/verify/user');
+		const response = await axiosConfig.post('/auth/verify-user', {
+			token
+		});
 
 		return await response.data;
 	} catch (error) {

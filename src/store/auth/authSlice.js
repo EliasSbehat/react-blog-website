@@ -9,6 +9,7 @@ const userAccessToken = localStorage.getItem('userAccessToken')
 
 const initialState = {
 	loading: false,
+	users: null,
 	user: null,
 	accessToken: userAccessToken,
 	error: null,
@@ -20,10 +21,9 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setCredentials: (state, action) => {
-			state.user = action.payload.user;
+			state.users = action.payload.user;
 			state.accessToken = action.payload.access_token;
-
-			localStorage.setItem('userAccessToken', action.payload.access_token);
+			localStorage.setItem('userAccessTokens', action.payload.access_token);
 		}
 	},
 	extraReducers: {

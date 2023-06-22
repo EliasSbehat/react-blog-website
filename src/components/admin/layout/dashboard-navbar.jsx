@@ -21,6 +21,7 @@ import {
   CreditCardIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
+import { Navigate } from 'react-router-dom';
 import {
   useMaterialTailwindController,
   setOpenConfigurator,
@@ -32,7 +33,10 @@ export function DashboardNavbar() {
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
-
+  const logoutHandler = () => {
+    localStorage.removeItem("userAccessTokens");
+    window.location.href = "/admin/login";
+  }
   return (
     <Navbar
       color={fixedNavbar ? "white" : "transparent"}
@@ -84,7 +88,7 @@ export function DashboardNavbar() {
           <IconButton
             variant="text"
             color="blue-gray"
-            onClick={() => setOpenConfigurator(dispatch, true)}
+            onClick={logoutHandler}
           >
             <ArrowRightOnRectangleIcon className="h-5 w-5 text-blue-gray-500" />
           </IconButton>
