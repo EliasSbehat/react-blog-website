@@ -22,6 +22,9 @@ import { gbConfig } from '../../../config';
 
 export const ManageProjects = () => {
 	const [open, setOpen] = useState(false);
+	const [dialogName, setDialogName] = useState("Create New Project");
+	const [flag, setFlag] = useState('save');
+	const [projectId, setProjectId] = useState("");
 	const [file, setFile] = useState("");
 	const [projects, setProjects] = useState(null);
 	const [selectedImgFile, setSelectedImgFile] = useState(null);
@@ -40,23 +43,49 @@ export const ManageProjects = () => {
 		await fetch(`${API_URL}/project/get`).then((response)=>{
 			return response.json();
 		}).then((data)=>{
-			console.log(data, 'data');
 			setProjects(data);
 		}).catch((error)=>{
 			console.error('There was a problem with the fetch operation:', error);
 		});
 	}
+	const handleDelete = async (e) => {
+		if (confirm("Do you want to delete this row?")) {
+			await fetch(`${API_URL}/project/delete`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({id: e.target.id}) }).then((response)=>{
+				return response.json();
+			}).then((data)=>{
+				handleGetAll();
+			}).catch((error)=>{
+				console.error('There was a problem with the fetch operation:', error);
+			});
+		}
+	}
+	const handleCreate = () => {
+		setOpen(true);
+		handleFormat();
+		setDialogName("Create New Project");
+	}
+	const handleEdit = (e) => {
+		let id = e.target.id*1;
+		setOpen(true);
+		setFlag('edit');
+		setDialogName("Edit Project");
+		for (let i = 0; i < projects.length; i++) {
+			if (id === projects[i].id) {
+				console.log(projects[i]);
+				setName(projects[i].project_name);
+				setAuthor(projects[i].project_author);
+				setIntroduction(projects[i].project_introduction.replace(/(\r\n|\n|\r)/gm, ''));
+				setDeveloper(projects[i].about_developers.replace(/(\r\n|\n|\r)/gm, ''));
+				setVideo(projects[i].project_video);
+				setLocation(projects[i].project_location);
+				setFile(`${API_URL}/projects/images/${projects[i].project_image}`);
+				setProjectId(id);
+			}
+		}
+	}
 	const handleSave = async () => {
 		if (!project_name) {
 			alert("Please enter a project name");
-			return;
-		}
-		if (!selectedImgFile) {
-			alert("Please choose a project image");
-			return;
-		}
-		if (!selectedPdfFile) {
-			alert("Please choose a project payment pdf");
 			return;
 		}
 		const formData = new FormData();
@@ -68,6 +97,8 @@ export const ManageProjects = () => {
     	formData.append("about_developers", about_developers);
     	formData.append("project_video", project_video);
     	formData.append("project_location", project_location);
+		formData.append("flag", flag);
+		formData.append("project_id", projectId);
 		try {
 			await fetch(`${API_URL}/project/add`, {
 				method: "POST",
@@ -75,6 +106,7 @@ export const ManageProjects = () => {
 			}).then((response)=>{
 				if (response.ok) {
 					handleFormat();
+					setOpen(false);
 					handleGetAll();
 				} else {
 					alert("failed");
@@ -101,7 +133,8 @@ export const ManageProjects = () => {
 		setSelectedPdfFile(null);
 		setSelectedImgFile(null);
 		setFile("");
-		setOpen(false);
+		setFlag('save');
+		setProjectId("");
 	}
 	const handleOpen = () => setOpen((cur) => !cur);
 	const handleChange = (e) => {
@@ -146,9 +179,9 @@ export const ManageProjects = () => {
 						</Typography>
 					</CardHeader>
 					<CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
-						<Button className="mx-6" onClick={handleOpen}>Create</Button>
+						<Button className="mx-6" onClick={handleCreate}>Create</Button>
 						<Dialog open={open} handler={handleOpen}>
-							<DialogHeader>Create New Project</DialogHeader>
+							<DialogHeader>{dialogName}</DialogHeader>
 							<DialogBody divider className="h-[23rem] sm:h-[40rem] overflow-scroll">
 								<Typography className="font-normal">
 									<div className=" w-form">
@@ -241,6 +274,8 @@ export const ManageProjects = () => {
 												as="a"
 												href="#"
 												className="text-xs font-semibold text-blue-gray-600 underline"
+												id={item.id}
+												onClick={handleEdit}
 											>
 												Edit
 											</Typography>
@@ -249,6 +284,8 @@ export const ManageProjects = () => {
 												as="a"
 												href="#"
 												className="text-xs font-semibold text-blue-gray-600 underline"
+												id={item.id}
+												onClick={handleDelete}
 											>
 												Delete
 											</Typography>

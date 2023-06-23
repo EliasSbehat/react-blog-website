@@ -20,6 +20,11 @@ export const routes = [
         name: "events",
         path: "/events",
       },
+      {
+        icon: <RectangleStackIcon {...icon} />,
+        name: "awards",
+        path: "/awards",
+      },
     ],
   }
 ];

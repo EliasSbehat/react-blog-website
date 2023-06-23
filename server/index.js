@@ -48,6 +48,8 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 const server = http.createServer(app);
 app.use('/auth', require('./routes/auth'));
 app.use('/project', require('./routes/project'));
+app.use('/event', require('./routes/event'));
+app.use('/award', require('./routes/award'));
 
 server.listen(PORT, function () {
   console.log('Server is running on Port: ' + PORT);
