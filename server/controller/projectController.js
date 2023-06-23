@@ -82,6 +82,16 @@ module.exports = {
             res.send(rows);
         });
     },
+    getById: function (req, res) {
+        Projects.getById(req.con, req.body.id, function (err, rows) {
+            res.send(rows);
+        });
+    },
+    getTwoLatest: function (req, res) {
+        Projects.getTwo(req.con, function (err, rows) {
+            res.send(rows);
+        });
+    },
     delete: function (req, res) {
         var id = req.body.id;
         Projects.getById(req.con, id, function (err, rows) {

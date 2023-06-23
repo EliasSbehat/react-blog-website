@@ -35,6 +35,12 @@ module.exports = {
     getAll: function (con, callback) {
         con.query(`SELECT * FROM projects`, callback)
     },
+    getById: function (con, id, callback) {
+        con.query(`SELECT * FROM projects WHERE id = ${con.escape(id)}`, callback)
+    },
+    getTwo: function (con, callback) {
+        con.query(`SELECT * FROM projects ORDER BY created_date DESC LIMIT 2`, callback)
+    },
     getByName: function (con, name, callback) {
         con.query(`SELECT * FROM projects WHERE project_name = ${con.escape(name)}`, callback)
     },

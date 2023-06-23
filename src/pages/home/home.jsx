@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
 	Card,
 	CardHeader,
@@ -5,10 +6,46 @@ import {
 	Typography,
 } from '@material-tailwind/react';
 import { NavLink } from 'react-router-dom';
-import { Award } from '../../components/award';
 import { Feedback } from '../../components/feedback';
+import { gbConfig } from '../../config';
 
 const Home = () => {
+	const API_URL = gbConfig.API_URL;
+	const [projects, setProjects] = useState(null);
+	const [awards, setAwards] = useState(null);
+	const [events, setEvents] = useState(null);
+	useEffect(() => {
+		handleGetTwoProjects();
+		handleGetFourAwards();
+		handleGetThreeEvents();
+	}, []);
+	const handleGetTwoProjects = async () => {
+		await fetch(`${API_URL}/project/getTwoLatest`).then((response)=>{
+			return response.json();
+		}).then((data)=>{
+			setProjects(data);
+		}).catch((error)=>{
+			console.error('There was a problem with the fetch operation:', error);
+		});
+	}
+	const handleGetFourAwards = async () => {
+		await fetch(`${API_URL}/award/getFourLatest`).then((response)=>{
+			return response.json();
+		}).then((data)=>{
+			setAwards(data);
+		}).catch((error)=>{
+			console.error('There was a problem with the fetch operation:', error);
+		});
+	}
+	const handleGetThreeEvents = async () => {
+		await fetch(`${API_URL}/event/getThreeLatest`).then((response)=>{
+			return response.json();
+		}).then((data)=>{
+			setEvents(data);
+		}).catch((error)=>{
+			console.error('There was a problem with the fetch operation:', error);
+		});
+	}
 	return (
 		<>
 			<div className="hero bg-[aliceblue] min-h-[80vh] sm:min-h-[100vh]" style={{
@@ -169,12 +206,12 @@ const Home = () => {
 					</div>
 					<div className="section-content pt-[5rem] flex sm:grid grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
 						{
-							[{ projectName: 'Mayfair Villas', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/6081ee9729ea98bef6fb16cb_6.jpg' }, { projectName: 'Mayfair Heights', img: '	https://uploads-ssl.webflow.com/60675406d40011636a539dc3/6081eac9ad2018452831e0a7_18.jpg' }].map((item, index) => (
+							projects && projects.map((item, index) => (
 								<div key={index} className="pvc-home-content_wrapper opacity-100 sm:opacity-80 hover:opacity-100">
-									<NavLink to={`/projects/${item.projectName}`} target="_blank" className="pvc-home-link w-inline-block">
+									<NavLink to={`/projects/${item.id}`} target="_blank" className="pvc-home-link w-inline-block">
 										<div className="">
 											<img
-												src={item.img}
+												src={`${API_URL}/projects/images/${item.project_image}`}
 												loading="lazy"
 												sizes="(max-width: 479px) 100vw, (max-width: 991px) 95vw, (max-width: 1279px) 77vw, (max-width: 1919px) 64vw, 1216px"
 												alt=""
@@ -182,7 +219,7 @@ const Home = () => {
 											/>
 										</div>
 										<div className="text-primary-blue text-normal hero-h3 text-center">
-											{item.projectName}
+											{item.project_name}
 										</div>
 									</NavLink>
 								</div>
@@ -232,7 +269,29 @@ const Home = () => {
 					<div className="section-header">
 						<div className="hero-content_wrapper"><h1 className="hero-h1 text-primary-blue text-center"><span className="font-normal">AWARDS OF </span> FAIR DEAL MARKETING</h1></div>
 					</div>
-					<Award />
+					<div className="section-content pt-[5rem] flex grid grid-cols-1 sm:grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
+						{
+							awards && awards.map((item, index) => (
+								<div key={index} className="pvc-home-content_wrapper">
+									<div className="">
+										<img
+											src={`${API_URL}/awards/images/${item.award_image}`}
+											loading="lazy"
+											sizes="(max-width: 479px) 100vw, (max-width: 991px) 95vw, (max-width: 1279px) 77vw, (max-width: 1919px) 64vw, 1216px"
+											alt=""
+											className="object-cover w-full sm:h-full mx-auto"
+										/>
+									</div>
+									<div className="text-primary-blue text-normal hero-h3 text-center">
+										{item.award_name}
+									</div>
+									<div className="text-center">
+										{item.award_description}
+									</div>
+								</div>
+							))
+						}
+					</div>
 					<div className="awards-btn_wrapper flex pt-[4rem]">
 						<button className="mx-auto">
 							<NavLink to="/awards" className="primaryButton flex items-center text-black">
@@ -249,12 +308,12 @@ const Home = () => {
 					</div>
 					<div className="section-content pt-[5rem] flex grid grid-cols-1 xl:grid-cols-3 md:grid-cols-2 gap-8 sm:w-full w-10/12 mx-auto">
 						{
-							[{ marketEventName: 'Chairman Fair Group of Companies awarded Sales Partner of the Year 2022 by Park View City', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Fair Deal Marketing Team Pindi Boys Titled as ‘Champions’ for Mega Stars League ‘22. ', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }, { marketEventName: 'Fair Deal Marketing Successfully Hosts Groundbreaking Ceremony of ‘Overseas Commercial Block. ', img: 'https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f352ce5aa26a06ea48fa_324263429_3575429622685500_1849132266714367206_n.jpg' }].map((item, index) => (
-								<NavLink to={`/events/${item.marketEventName}`}>
+							events && events.map((item, index) => (
+								<NavLink to={`/events/${item.id}`}>
 									<Card key={index} className="mt-6 mx-auto">
 										<CardHeader color="blue-gray" className="relative h-56">
 											<img
-												src={item.img}
+												src={`${API_URL}/events/images/${item.event_image}`}
 												loading="lazy"
 												sizes="(max-width: 479px) 100vw, (max-width: 991px) 95vw, (max-width: 1279px) 77vw, (max-width: 1919px) 64vw, 1216px"
 												alt=""
@@ -263,7 +322,7 @@ const Home = () => {
 										</CardHeader>
 										<CardBody>
 											<Typography variant="h5" color="text-black hero-h4" className="mb-2">
-												{item.marketEventName}
+												{item.event_name}
 											</Typography>
 										</CardBody>
 									</Card>

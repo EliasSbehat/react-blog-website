@@ -1,24 +1,40 @@
 import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { gbConfig } from '../../config';
 
 const SubEvent = () => {
 	const { id } = useParams();
-	console.log(id);
+	const API_URL = gbConfig.API_URL;
+	const [event, setEvent] = useState(null);
+	useEffect(() => {
+		handleGetProjects();
+	}, []);
+	const handleGetProjects = async () => {
+		await fetch(`${API_URL}/event/getById`, { method: "POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({id: id}) }).then((response)=>{
+			return response.json();
+		}).then((data)=>{
+			setEvent(data[0]);
+		}).catch((error)=>{
+			console.error('There was a problem with the fetch operation:', error);
+		});
+	}
+	console.log(event);
 	return (
 		<>
 			<div className="flex bg-white pb-[6rem]">
-				<div className="section-projects mx-auto">
+				<div className="section-events mx-auto">
 					<div className="container mx-auto">
-						<div className="project-main-image wf-section">
+						<div className="event-main-image wf-section">
 							<img
-								src="https://uploads-ssl.webflow.com/60675406d40011636a539dc3/63c4f33a1c21785ad1d5a77b_322706468_709012050604789_8321354528725175344_n.jpg"
+								src={`${API_URL}/events/images/${event?.event_image}`}
 								loading="lazy"
 								alt="Mayfair Villas"
-								className="image-100"
+								className="mx-auto object-cover"
 							/>
 						</div>
 						<div className="section-content pt-[2rem] sm:w-full w-10/12 mx-auto">
-							<h1 className="hero-h3 text-primary-blue text-left">Fair Deal Marketing Successfully Hosts Groundbreaking Ceremony of ‘Overseas Commercial Block.</h1>
-							<p className="py-6">Fair Deal Marketing hosts the groundbreaking ceremony of ‘Overseas Commercial Block’ in Park View City Islamabad. Chief Guests Abdul Rehman Khan and Abdul Rafay Khan, Director Park View City, and Guest of Honour, Inaya Fareed graced the event. The event puts another prestigious commercial addition to the map of Park View City featuring world-class amenities at the most ideal location.</p>
+							<h1 className="hero-h3 text-primary-blue text-left">{event?.event_name}</h1>
+							<p className="py-6">{event?.event_description}</p>
 						</div>
 					</div>
 				</div>
